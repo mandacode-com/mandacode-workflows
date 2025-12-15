@@ -92,18 +92,18 @@ jobs:
           PREFIX="${{ inputs.tag-prefix }}"
           MIG_PREFIX="${{ inputs.migration-tag-prefix }}"
           if [[ "$TAG_NAME" == "$MIG_PREFIX"* ]]; then
-            RELEASE_TAG="${TAG_NAME#$MIG_PREFIX}"
+            RELEASE_TAG="${TAG_NAME#"$MIG_PREFIX"}"
             IS_MIGRATION="true"
           elif [[ "$TAG_NAME" == "$PREFIX"* ]]; then
-            RELEASE_TAG="${TAG_NAME#$PREFIX}"
+            RELEASE_TAG="${TAG_NAME#"$PREFIX"}"
             IS_MIGRATION="false"
           else
             echo "Tag does not match expected prefixes."
             exit 1
           fi
 
-          echo "release-tag=$RELEASE_TAG" >> $GITHUB_OUTPUT
-          echo "is-migration=$IS_MIGRATION" >> $GITHUB_OUTPUT
+          echo "release-tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+          echo "is-migration=$IS_MIGRATION" >> "$GITHUB_OUTPUT"
 
   build-and-push:
     name: Build and Push Docker Image

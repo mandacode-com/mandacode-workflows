@@ -106,7 +106,7 @@ jobs:
 
           # Remove prefix if present
           if [ -n "$PREFIX" ]; then
-            CLEAN_TAG="${TAG#$PREFIX}"
+            CLEAN_TAG="${TAG#"$PREFIX"}"
           else
             CLEAN_TAG="$TAG"
           fi
