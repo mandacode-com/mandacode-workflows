@@ -28,7 +28,7 @@ on:
         required: false
         type: string
         default: "[]"
-      base-path:
+      image-base-path:
         description: "Base path for Dockerfiles (prepended to dockerfile paths)"
         required: false
         type: string
@@ -110,7 +110,7 @@ jobs:
     uses: ./.github/workflows/dockerfile_build_and_push.yml
     with:
       images: ${{ inputs.images }}
-      base-path: ${{ inputs.base-path }}
+      base-path: ${{ inputs.image-base-path }}
       build-context: ${{ inputs.build-context }}
       registry: ${{ inputs.registry }}
       tag: ${{ github.ref_name }}
@@ -128,7 +128,7 @@ jobs:
     uses: ./.github/workflows/dockerfile_build_and_push.yml
     with:
       images: ${{ inputs.migration-images }}
-      base-path: ${{ inputs.base-path }}
+      base-path: ${{ inputs.image-base-path }}
       build-context: ${{ inputs.build-context }}
       registry: ${{ inputs.registry }}
       tag: ${{ github.ref_name }}

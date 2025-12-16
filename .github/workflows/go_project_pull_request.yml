@@ -53,12 +53,12 @@ on:
         required: false
         type: boolean
         default: false
-      dockerfiles:
+      images:
         description: 'JSON array of Dockerfile paths [{dockerfile"}]'
         required: false
         type: string
         default: "[]"
-      docker-base-path:
+      image-base-path:
         description: "Base path for Dockerfiles"
         required: false
         type: string
@@ -108,11 +108,11 @@ jobs:
 
   dockerfile-test:
     name: Dockerfile Test
-    if: inputs.enable-dockerfile-test && fromJson(inputs.dockerfiles) != null && fromJson(inputs.dockerfiles)[0] != null
+    if: inputs.enable-dockerfile-test && fromJson(inputs.images) != null && fromJson(inputs.images)[0] != null
     uses: ./.github/workflows/dockerfile_test.yml
     with:
-      images: ${{ inputs.dockerfiles }}
-      base-path: ${{ inputs.docker-base-path }}
+      images: ${{ inputs.images }}
+      base-path: ${{ inputs.image-base-path }}
       build-context: ${{ inputs.build-context }}
 
   helm-test:
